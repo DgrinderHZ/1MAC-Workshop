@@ -1,2 +1,2 @@
 # 1MAC-Workshop
-An application of Full Stack Web Dev course I studied with 1MAC on Udacity!
+A practice of Full Stack Web Dev course I studied with 1MAC on Udacity!
