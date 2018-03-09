@@ -17,10 +17,8 @@ give 2
 
 """
 
-allowed_papers = [100, 50, 10, 5]
-money_in_bank = 500
 
-def GetRequest():
+def get_request(money_in_bank):
     """ Asks the client to input the request """
     request = int(input("Put the requested amount of money!\n"))
     while request <= 0 or request >= money_in_bank:
@@ -33,13 +31,16 @@ def GetRequest():
     return request
 
 
-def Give(request):
+def give(request, allowed_papers):
     for paper in allowed_papers:
         while request > paper:
                 print ("give "+ str(paper))
                 request -= paper
     print ("give " + str(request))
 
-request = GetRequest()
-Give(request)
+allowed_papers = [100, 50, 10, 5]
+money_in_bank = 500
+
+request = get_request(money_in_bank)
+give(request, allowed_papers)
 
