@@ -1,4 +1,5 @@
 import models
+import stores
 
 
 member1 = models.Member("Hassan", 22)
@@ -8,8 +9,8 @@ post1 = models.Post("Classes", "OOP blueprints!")
 post2 = models.Post("Inheritance", "It makes classes for reusability!")
 post3 = models.Post("Variables", "Every code has Variables!")
 
-member_store = models.MemberStore()
-post_store = models.PostStore()
+member_store = stores.MemberStore()
+post_store = stores.PostStore()
 
 print("="*10 + " Members " + "="*10)
 print member1
