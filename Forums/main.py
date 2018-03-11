@@ -22,13 +22,22 @@ print post2
 member_store.add(member1)
 member_store.add(member2)
 print("="*10 + " Members Store " + "="*10)
-print(member_store.get_all())
+all_members = member_store.get_all()
+
+for member in all_members:
+	print(member)
 
 post_store.add(post1)
 post_store.add(post2)
 post_store.add(post3)
 print("="*10 + " Posts Store " + "="*10)
 print(post_store.get_all())
+
+print("="*10 + " Get member by ID " + "="*10)
+print(member_store.get_by_id(1))
+
+print("="*10 + " Get member by NAME " + "="*10)
+print(member_store.get_by_name("Hassan"))
 
 print(":::END:::")
 
