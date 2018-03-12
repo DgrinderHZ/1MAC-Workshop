@@ -46,8 +46,26 @@ class PostStore:
 	posts = []
 
 	def add(self, post):
-		self.posts.append(post)
+		PostStore.posts.append(post)
 
 	def get_all(self):
-		for post in self.posts:
+		for post in PostStore.posts:
 			print(post)
+
+	def get_by_id(self, id):
+		all_posts = self.get_all()
+		for post in all_posts:
+			if post.id == id:
+				return post
+		return None
+
+	def entity_exists(self, post):
+		result = True
+		if post not in PostStore.posts:
+			result = False
+		return result
+
+	def delete(self, id):
+		post = self.get_by_id(id)
+		if post:
+			PostStore.posts.remove(post)
