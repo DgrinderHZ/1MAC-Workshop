@@ -30,6 +30,17 @@ class MemberStore:
 
 		return result
 
+	def entity_exists(self, member):
+		result = False
+		name = self.get_by_name(member.name)
+		if name != -1:
+			result = True
+		return result
+
+	def delete(self, id):
+		MemberStore.members.remove(MemberStore.members[id])
+
+
 
 class PostStore:
 	posts = []
