@@ -1,28 +1,27 @@
 class MemberStore:
 	members = []
+	last_id = 1
 
 	def add(self, member):
-		self.members.append(member)
+		member.id = MemberStore.last_id
+		MemberStore.members.append(member)
+		MemberStore.last_id += 1
 
 	def get_all(self):
-		#for member in self.members:
-		#	print(member)
-		return self.members
+		return MemberStore.members
 
 	def get_by_id(self, id):
 		all_members = self.get_all()
-		result = -1
-		i = 0
+		result = None
 		for member in all_members:
-			if (i == id):
+			if (member.id == id):
 				result = member
-			i += 1
 
 		return result
 
 	def get_by_name(self, name):
 		all_members = self.get_all()
-		result = -1
+		result = None
 
 		for member in all_members:
 			if member.name == name:
@@ -32,14 +31,16 @@ class MemberStore:
 
 	def entity_exists(self, member):
 		result = False
-		name = self.get_by_name(member.name)
-		if name != -1:
+
+		if member in MemberStore.members:
 			result = True
+
 		return result
 
 	def delete(self, id):
-		MemberStore.members.remove(MemberStore.members[id])
-
+		member = self.get_by_id(id)
+		if member:
+			MemberStore.member.remove(member)
 
 
 class PostStore:
