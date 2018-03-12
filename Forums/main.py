@@ -6,33 +6,49 @@ def show_members(all_members):
 	for member in all_members:
 		print(member)
 
-member1 = models.Member("Hassan", 22)
-member2 = models.Member("Mohammad", 24)
+def create_members(total_members):
+	members_list = []
+	for i in range(0, total_members):
+		name = raw_input("Give member's name: \n")
+		age = raw_input("Give member's age: \n")
+		members_list.append(models.Member(name,age))
+		print(members_list[-1])
+	print("=" * 30)
+	return members_list
 
-post1 = models.Post("Classes", "OOP blueprints!")
-post2 = models.Post("Inheritance", "It makes classes for reusability!")
-post3 = models.Post("Variables", "Every code has Variables!")
+def create_posts(totals_posts):
+	posts_list = []
+	for i in range(0, totals_posts):
+		title = raw_input("Give post's title: \n")
+		body = raw_input("Give post's body: \n")
+		posts_list.append(models.Post(title, body))
+		print(posts_list[-1])
+	print("=" * 30)
+	return posts_list
+
+def store_members(members_list, member_store):
+	for member in members_list:
+		member_store.add(member)
+
+def store_posts(posts_list, post_store):
+	for post in posts_list:
+		post_store.add(post)
 
 member_store = stores.MemberStore()
 post_store = stores.PostStore()
 
 print("="*10 + " Members " + "="*10)
-print member1
-print member2
+members_list = create_members(2)
 print("="*10 + " Posts " + "="*10)
-print post1
-print post2
+posts_list = create_posts(2)
 
-member_store.add(member1)
-member_store.add(member2)
+store_members(members_list, member_store)
+store_posts(posts_list, post_store)
+
 print("="*10 + " Members Store " + "="*10)
 all_members = member_store.get_all()
-
 show_members(all_members)
 
-post_store.add(post1)
-post_store.add(post2)
-post_store.add(post3)
 print("="*10 + " Posts Store " + "="*10)
 print(post_store.get_all())
 
@@ -43,19 +59,17 @@ print("="*10 + " Get member by NAME " + "="*10)
 print(member_store.get_by_name("Hassan"))
 
 print("========= entity_exists test ========")
-print(member_store.entity_exists(member1))
-member3 = models.Member("Ali", 23)
-print(member_store.entity_exists(member3))
+print(member_store.entity_exists(members_list[0]))
 
 print("========= delete test =========")
-member_store.add(member3)
-all_members = member_store.get_all()
-show_members(all_members)
-member_store.delete(2)
+member_store.delete(1)
+
 print("=========== after deletion: ")
 all_members = member_store.get_all()
 show_members(all_members)
 
+print("=========== Update ======")
+print(member_store.update(member_store.members[0]))
 print(":::END:::")
 
 

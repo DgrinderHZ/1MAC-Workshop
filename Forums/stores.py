@@ -1,3 +1,5 @@
+import models
+
 class MemberStore:
 	members = []
 	last_id = 1
@@ -40,8 +42,12 @@ class MemberStore:
 	def delete(self, id):
 		member = self.get_by_id(id)
 		if member:
-			MemberStore.member.remove(member)
+			MemberStore.members.remove(member)
 
+	def update(self, member):
+		name = raw_input("Give the new name: \n")
+		age = raw_input("Give the new age: \n")
+		return models.Member(name, age)
 
 class PostStore:
 	posts = []
