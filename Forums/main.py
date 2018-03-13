@@ -34,6 +34,27 @@ def store_posts(posts_list, post_store):
 	for post in posts_list:
 		post_store.add(post)
 
+def delete_with_catch_exeptions(num):
+	try:
+		member_store.delete(num)
+	except ValueError:
+		print("delete catched an exeption! reconsider your demand!")
+
+def modify_object(member_store, name):
+	""" Takes a members name, and updates his info """
+
+	new_name = raw_input("New name: \n")
+	new_age = raw_input("New age: \n")
+	new_member = models.Member(new_name, new_age)
+	member_to_update = member_store.get_by_name(name)
+
+	if member_to_update == None:
+		print("Sorry! This member name does not exit!")
+	else:
+		new_id = member_to_update.id
+		new_member.id = new_id
+		member_store.update(new_member)
+
 member_store = stores.MemberStore()
 post_store = stores.PostStore()
 
@@ -62,14 +83,17 @@ print("========= entity_exists test ========")
 print(member_store.entity_exists(members_list[0]))
 
 print("========= delete test =========")
-member_store.delete(1)
+delete_with_catch_exeptions(1)
 
 print("=========== after deletion: ")
 all_members = member_store.get_all()
 show_members(all_members)
 
 print("=========== Update ======")
-print(member_store.update(member_store.members[0]))
+modify_object(member_store, "Hassan")
+print("=========== after Update: ")
+all_members = member_store.get_all()
+show_members(all_members)
 print(":::END:::")
 
 

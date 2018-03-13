@@ -18,6 +18,7 @@ class MemberStore:
 		for member in all_members:
 			if (member.id == id):
 				result = member
+				break
 
 		return result
 
@@ -28,6 +29,7 @@ class MemberStore:
 		for member in all_members:
 			if member.name == name:
 				result = member
+				break
 
 		return result
 
@@ -45,9 +47,12 @@ class MemberStore:
 			MemberStore.members.remove(member)
 
 	def update(self, member):
-		name = raw_input("Give the new name: \n")
-		age = raw_input("Give the new age: \n")
-		return models.Member(name, age)
+		all_members = self.get_all()
+		for index, current_member in enumerate(all_members):
+			if member.id == current_member.id:
+				MemberStore.members[index] = member
+				break
+
 
 class PostStore:
 	posts = []
@@ -76,3 +81,10 @@ class PostStore:
 		post = self.get_by_id(id)
 		if post:
 			PostStore.posts.remove(post)
+
+	def update(self, post):
+		all_posts = self.get_all()
+		for index, current_post in enumerate(all_members):
+			if post.id == current_post.id:
+				PostStore.posts[index] = post
+				break
