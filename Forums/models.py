@@ -11,7 +11,7 @@ class Member:
 
 
 class Post:
-	def __init__(self, title, body):
+	def __init__(self, title, body, member_id=0):
 		self.title = title
 		self.body = body
 		self.id = 0

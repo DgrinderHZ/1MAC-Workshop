@@ -2,9 +2,14 @@ import models
 import stores
 
 
-def show_members(all_members):
+def show_members():
+	print("=" * 30)
+
+	all_members = member_store.get_all()
 	for member in all_members:
 		print(member)
+
+	print("=" * 30)
 
 def create_members(total_members):
 	members_list = []
@@ -55,6 +60,20 @@ def modify_object(member_store, name):
 		new_member.id = new_id
 		member_store.update(new_member)
 
+def get_by_id_should_retrieve_same_object(member_store, member2):
+    member2_retrieved = member_store.get_by_id(member2.id)
+
+    if member2 is member2_retrieved:
+        print("member2 and member2_retrieved are matching !")
+
+def store_should_get_members_by_name(member_store):
+
+    print("*" * 30)
+    print("Getting by name:")
+    members_by_name_retrieved = member_store.get_by_name("Mohammed")
+    print_members_list(members_by_name_retrieved)
+
+
 member_store = stores.MemberStore()
 post_store = stores.PostStore()
 
@@ -67,14 +86,13 @@ store_members(members_list, member_store)
 store_posts(posts_list, post_store)
 
 print("="*10 + " Members Store " + "="*10)
-all_members = member_store.get_all()
-show_members(all_members)
+show_members()
 
 print("="*10 + " Posts Store " + "="*10)
 print(post_store.get_all())
 
 print("="*10 + " Get member by ID " + "="*10)
-print(member_store.get_by_id(1))
+get_by_id_should_retrieve_same_object(member_store, members_list[0])
 
 print("="*10 + " Get member by NAME " + "="*10)
 print(member_store.get_by_name("Hassan"))
@@ -86,14 +104,14 @@ print("========= delete test =========")
 delete_with_catch_exeptions(1)
 
 print("=========== after deletion: ")
-all_members = member_store.get_all()
-show_members(all_members)
+show_members()
 
 print("=========== Update ======")
 modify_object(member_store, "Hassan")
+
 print("=========== after Update: ")
-all_members = member_store.get_all()
-show_members(all_members)
+show_members()
+
 print(":::END:::")
 
 
