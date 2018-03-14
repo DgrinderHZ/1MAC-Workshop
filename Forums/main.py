@@ -104,9 +104,9 @@ def store_should_get_members_with_posts(member_store, post_store):
 	members_with_posts = member_store.get_members_with_posts(post_store.get_all())
 
 	for member_with_posts in members_with_posts:
-		print(f"{member_with_posts} has posts:")
+		print("{} has posts:".format(member_with_posts))
 		for post in member_with_posts.posts:
-			print(f"\t{post}")
+			print("\t{post}")
 
 		print("=" * 10)
 
@@ -115,9 +115,9 @@ def store_should_get_top_two(member_store, post_store):
 	top_two_members = member_store.get_top_two(post_store.get_all())
 
 	for member_with_posts in top_two_members:
-		print(f"{member_with_posts} has posts:")
+		print("{member_with_posts} has posts:")
 		for post in member_with_posts.posts:
-			print(f"\t{post}")
+			print("\t{post}")
 
 
 def store_should_get_posts_by_date(post_store):

@@ -24,6 +24,6 @@ class Post:
         self.date = datetime.datetime.now()
 
     def __str__(self):
-        return f"Title: {self.title}, Content: {self.content}, Date: {self.date}"
+        return "Title: {}, Content: {}, Date: {}".format(self.title, self.content, self.date)
 
 

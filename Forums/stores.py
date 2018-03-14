@@ -52,7 +52,7 @@ class MemberStore(BaseStore):
     last_id = 1
 
     def __init__(self):
-        super().__init__(MemberStore.members, MemberStore.last_id)
+        BaseStore.__init__(self, MemberStore.members, MemberStore.last_id)
 
     def get_by_name(self, name):
         all_members = self.get_all()
@@ -79,7 +79,7 @@ class PostStore(BaseStore):
     last_id = 1
 
     def __init__(self):
-        super().__init__(PostStore.posts, PostStore.last_id)
+        BaseStore.__init__(self, PostStore.posts, PostStore.last_id)
 
     def get_posts_by_date(self):
         all_posts = self.get_all()
