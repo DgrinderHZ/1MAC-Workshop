@@ -1,3 +1,6 @@
+"""
+Project stores!!!
+"""
 class MemberStore:
 	members = []
 
