@@ -73,6 +73,15 @@ def store_should_get_members_by_name(member_store):
     members_by_name_retrieved = member_store.get_by_name("Mohammed")
     print_members_list(members_by_name_retrieved)
 
+def show_members_with_posts(member_store, post_store):
+	members_with_posts = member_store.get_members_with_posts(post_store.get_all())
+
+	for member_with_posts in members_with_posts:
+		print("{} has posts:".format(member_with_posts))
+		for post in member_with_posts.posts:
+			print("\t\t{}".format(post))
+
+		print("=" * 10)
 
 member_store = stores.MemberStore()
 post_store = stores.PostStore()
@@ -111,6 +120,8 @@ modify_object(member_store, "Hassan")
 
 print("=========== after Update: ")
 show_members()
+print("========== members with posts")
+show_members_with_posts(member_store, post_store)
 
 print(":::END:::")
 

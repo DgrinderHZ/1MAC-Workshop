@@ -1,4 +1,6 @@
 import models
+import itertools
+import copy
 
 class MemberStore:
 	members = []
@@ -24,14 +26,10 @@ class MemberStore:
 
 	def get_by_name(self, name):
 		all_members = self.get_all()
-		result = None
 
 		for member in all_members:
 			if member.name == name:
-				result = member
-				break
-
-		return result
+				yield member
 
 	def entity_exists(self, member):
 		result = False
@@ -52,6 +50,17 @@ class MemberStore:
 			if member.id == current_member.id:
 				MemberStore.members[index] = member
 				break
+
+	def get_members_with_posts(self, all_posts):
+		all_members = copy.deepcopy(self.get_all())
+
+		for member, post in itertools.product(all_members, all_posts):
+			if member.id == post.member_id:
+				member.posts.append(post)
+
+		for member in all_members:
+			yield member
+
 
 class PostStore:
 	posts = []
