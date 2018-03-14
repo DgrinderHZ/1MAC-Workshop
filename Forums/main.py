@@ -83,6 +83,16 @@ def show_members_with_posts(member_store, post_store):
 
 		print("=" * 10)
 
+def show_top_two(member_store, post_store):
+    top_two_members = member_store.get_top_two(post_store.get_all())
+
+    for member_with_posts in top_two_members:
+        print("{} has the following posts:".format(member_with_posts))
+        for post in member_with_posts:
+            print("\t\t{}".format(post))
+
+
+
 member_store = stores.MemberStore()
 post_store = stores.PostStore()
 

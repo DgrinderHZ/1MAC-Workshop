@@ -61,6 +61,14 @@ class MemberStore:
 		for member in all_members:
 			yield member
 
+    def get_top_two(self, all_posts):
+        all_members = self.get_members_with_posts(all_posts)
+
+        # sorting to get the top two
+        all_posts = sorted(all_members, key=lambda x: len(x.posts), reverse=True)
+
+        return all_members[0:2]
+
 
 class PostStore:
 	posts = []
