@@ -53,7 +53,6 @@ class MemberStore:
 				MemberStore.members[index] = member
 				break
 
-
 class PostStore:
 	posts = []
 
