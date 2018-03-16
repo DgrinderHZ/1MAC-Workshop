@@ -14,9 +14,9 @@ class BaseStore():
     def get_all(self):
         return self._data_provider
 
-    def add(self, member):
-        member.id = self._last_id
-        self._data_provider.append(member)
+    def add(self, model_instance):
+        model_instance.id = self._last_id
+        self._data_provider.append(model_instance)
         self._last_id += 1
 
     def get_by_id(self, id):
